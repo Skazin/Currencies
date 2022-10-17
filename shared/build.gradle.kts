@@ -16,6 +16,11 @@ android {
 
         testInstrumentationRunner = AppConfig.androidTestInstrumentation
 
+        val serverUrl = findProperty("api.url") as String
+        buildConfigField("String", "API_URL", serverUrl)
+
+        val apiKey = findProperty("api.key") as String
+        buildConfigField("String", "API_KEY", apiKey)
     }
 
     buildTypes {
@@ -25,13 +30,9 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            val serverUrl = findProperty("api.url") as String
-            buildConfigField("String", "API_URL", serverUrl)
+
         }
-        getByName("debug") {
-            val serverUrl = findProperty("api.url") as String
-            buildConfigField("String", "API_URL", serverUrl)
-        }
+        getByName("debug") {}
     }
     buildFeatures {
         compose = true
@@ -52,12 +53,12 @@ android {
 
 dependencies {
 
-//    //Model module
-//    implementation(project(":model"))
+    //Model module
+    implementation(project(":model"))
 
     // Test shared module
     testImplementation(project(":test-shared"))
-//    testImplementation(project(":android-test-shared"))
+    testImplementation(project(":android-test-shared"))
 
     implementation(Libs.MATERIAL_DESIGN)
 
@@ -95,15 +96,10 @@ dependencies {
     api(Libs.DATA_STORE)
     api(Libs.DATA_STORE_CORE)
 
-    //Firebase
-    implementation(platform(Libs.FIREBASE_BOM))
-    implementation(Libs.FIREBASE_ANALYTICS_KTX)
-    implementation(Libs.FIREBASE_MESSAGING_KTX)
-    implementation(Libs.FIREBASE_CRASHLYTICS_KTX)
-
-    //Glide
-    implementation(Libs.GLIDE)
-    kapt(Libs.GLIDE_KAPT)
+    //Room
+    implementation(Libs.ROOM_RUNTIME)
+    implementation(Libs.ROOM_KTX)
+    kapt(Libs.ROOM_COMPILER)
 
     // Local unit tests
     testImplementation(Libs.ASSERTJ)

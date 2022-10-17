@@ -13,8 +13,6 @@ object Libs {
         "androidx.appcompat:appcompat:${Versions.APP_COMPAT}"
     const val ASSERTJ =
         "org.assertj:assertj-core:${Versions.ASSERTJ_VERSION}"
-    const val COIL =
-        "io.coil-kt:coil-compose:${Versions.COIL_VERSION}"
     const val CONSTRAINT_LAYOUT =
         "androidx.constraintlayout:constraintlayout:${Versions.CONSTRAINT_VERSION}"
     const val COMPOSE_ACCOMPANIST =
@@ -45,8 +43,6 @@ object Libs {
         "androidx.compose.ui:ui-tooling-preview:${Versions.COMPOSE_VERSION}"
     const val COMPOSE_MATERIAL =
         "androidx.compose.material:material:${Versions.COMPOSE_VERSION}"
-    const val COMPOSE_NAVIGATOR =
-        "com.roudikk.compose-navigator:compose-navigator:${Versions.COMPOSE_NAVIGATOR_VERSION}"
     const val COMPOSE_PAGING =
         "androidx.paging:paging-compose:${Versions.COMPOSE_PAGING}"
     const val COMPOSE_RUNTIME =
@@ -71,32 +67,6 @@ object Libs {
         "androidx.datastore:datastore-preferences:${Versions.DATA_STORE_VERSION}"
     const val DATA_STORE_CORE =
         "androidx.datastore:datastore-core:${Versions.DATA_STORE_VERSION}"
-    const val FIREBASE_BOM =
-        "com.google.firebase:firebase-bom:${Versions.FIREBASE_BOM_VERSION}"
-    const val FIREBASE_ANALYTICS_KTX =
-        "com.google.firebase:firebase-analytics-ktx"
-    const val FIREBASE_CRASHLYTICS_KTX =
-        "com.google.firebase:firebase-crashlytics-ktx"
-    const val FIREBASE_CRASHLYTICS_CLASSPATH =
-        "com.google.firebase:firebase-crashlytics-gradle:${Versions.FIREBASE_CLASSPATH_VERSION}"
-    const val FIREBASE_MESSAGING_KTX =
-        "com.google.firebase:firebase-messaging-ktx"
-    const val GOOGLE_MAPS =
-        "com.google.android.libraries.maps:maps:${Versions.GOOGLE_MAPS_VERSION}"
-    const val GOOGLE_MAPS_KTX =
-        "com.google.maps.android:maps-v3-ktx:${Versions.GOOGLE_MAPS_KTX_VERSION}"
-    const val GOOGLE_AUTH =
-        "com.google.android.gms:play-services-auth:${Versions.GOOGLE_AUTH_VERSION}"
-    const val GOOGLE_SERVICE =
-        "com.google.gms:google-services:${Versions.GOOGLE_SERVICE_VERSION}"
-    const val GOOGLE_PLACES =
-        "com.google.android.libraries.places:places:${Versions.PLACES_VERSION}"
-    const val GLIDE =
-        "com.github.bumptech.glide:glide:${Versions.GLIDE_VERSION}"
-    const val GLIDE_KAPT =
-        "com.github.bumptech.glide:compiler:${Versions.GLIDE_VERSION}"
-    const val IMAGE_CROPPER =
-        "com.theartofdev.edmodo:android-image-cropper:${Versions.IMAGE_CROPPER}"
     const val JUNIT =
         "junit:junit:${Versions.JUNIT}"
     const val JUNIT_ESPRESSO =
@@ -155,18 +125,16 @@ object Libs {
         "androidx.navigation:navigation-testing:${Versions.NAVIGATION_VERSION}"
     const val OKHTTP =
         "com.squareup.okhttp3:logging-interceptor:${Versions.OKHTTP}"
-    const val PICASSO =
-        "com.squareup.picasso:picasso:${Versions.PICASSO_VERSION}"
-    const val PICASSO_TRANSFORMATION =
-        "jp.wasabeef:picasso-transformations:${Versions.PICASSO_TRANSFORMATION_VERSION}"
     const val POWER_MOCK =
         "org.powermock:powermock-core:${Versions.POWER_MOCK}"
-    const val ROUNDED_IMAGEVIEW =
-        "com.makeramen:roundedimageview:${Versions.ROUNDED_IMAGEVIEW}"
     const val RETROFIT =
         "com.squareup.retrofit2:retrofit:${Versions.RETROFIT}"
-    const val SECURITY_CRYPTO =
-        "androidx.security:security-crypto:${Versions.SECURITY_CRYPTO}"
+    const val ROOM_RUNTIME =
+        "androidx.room:room-runtime:${Versions.ROOM_RUNTIME}"
+    const val ROOM_KTX =
+        "androidx.room:room-ktx:${Versions.ROOM_KTX}"
+    const val ROOM_COMPILER =
+        "androidx.room:room-compiler:${Versions.ROOM_COMPILER}"
     const val TIMBER =
         "com.jakewharton.timber:timber:${Versions.TIMBER}"
     const val TURBINE =
@@ -179,11 +147,9 @@ object Versions {
     const val ANDROID_TEST_VERSION= "1.4.0"
     const val ARCH_VERSION = "2.1.0"
     const val ASSERTJ_VERSION = "3.19.0"
-    const val COIL_VERSION = "1.4.0"
     const val COMPOSE_ACCOMPANIST_VERSION = "0.21.4-beta"
     const val COMPOSE_CONSTRAINT_VERSION = "1.0.0-beta02"
     const val COMPOSE_HILT_VERSION = "1.0.0-alpha03"
-    const val COMPOSE_NAVIGATOR_VERSION = "2.0.2"
     const val COMPOSE_PAGING = "1.0.0-alpha12"
     const val COMPOSE_VERSION = "1.2.1"
     const val COMPOSE_COMPILER_VERSION = "1.3.2"
@@ -193,14 +159,6 @@ object Versions {
     const val COROUTINES_TEST = "1.6.4"
     const val DAGGER_HILT = "2.44"
     const val DATA_STORE_VERSION = "1.0.0"
-    const val FIREBASE_BOM_VERSION = "29.0.0"
-    const val FIREBASE_CLASSPATH_VERSION = "2.8.0"
-    const val GLIDE_VERSION = "4.12.0"
-    const val GOOGLE_AUTH_VERSION = "19.2.0"
-    const val GOOGLE_MAPS_KTX_VERSION = "2.2.0"
-    const val GOOGLE_MAPS_VERSION = "3.1.0-beta"
-    const val GOOGLE_SERVICE_VERSION = "4.3.10"
-    const val IMAGE_CROPPER = "2.8.+"
     const val JUNIT = "4.13"
     const val JUNIT_ESPRESSO = "3.4.0"
     const val JUNIT_EXT = "1.1.2"
@@ -216,14 +174,12 @@ object Versions {
     const val NAVIGATION_COMPOSE = "2.5.1"
     const val NAVIGATION_VERSION = "2.3.4"
     const val OKHTTP = "4.8.1"
-    const val PICASSO_TRANSFORMATION_VERSION = "2.2.1"
-    const val PICASSO_VERSION = "2.5.2"
-    const val PLACES_VERSION = "2.5.0"
     const val POWER_MOCK = "2.0.9"
     const val RETROFIT = "2.9.0"
     const val RETROFIT_CONVERTER = "2.9.0"
-    const val ROUNDED_IMAGEVIEW = "2.3.0"
-    const val SECURITY_CRYPTO = "1.1.0-alpha03"
+    const val ROOM_RUNTIME = "2.4.3"
+    const val ROOM_KTX = "2.4.3"
+    const val ROOM_COMPILER = "2.4.3"
     const val TIMBER = "5.0.1"
     const val TURBINE = "0.5.2"
 }

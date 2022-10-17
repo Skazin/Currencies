@@ -111,6 +111,11 @@ dependencies {
     implementation(Libs.DAGGER_HILT_COMPOSE)
     kapt(Libs.DAGGER_HILT_COMPILER)
 
+    //Room
+    implementation(Libs.ROOM_RUNTIME)
+    implementation(Libs.ROOM_KTX)
+    kapt(Libs.ROOM_COMPILER)
+
     //Flow
     testImplementation(Libs.TURBINE)
 
