@@ -2,6 +2,7 @@ package com.currencies.shared.di
 
 import com.currencies.shared.BuildConfig
 import com.currencies.shared.support.constants.NetworkConstants.TIMEOUT_LIMIT_SECONDS
+import com.currencies.shared.support.interceptor.HeaderInterceptor
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
@@ -27,15 +28,23 @@ class RetrofitModule {
 
     @Singleton
     @Provides
+    fun provideHeaderInterceptor(): HeaderInterceptor = HeaderInterceptor()
+
+
+    @Singleton
+    @Provides
     fun provideOkHttpClient(
-        loggingInterceptor: HttpLoggingInterceptor
+        loggingInterceptor: HttpLoggingInterceptor,
+        headerInterceptor: HeaderInterceptor
     ): OkHttpClient =
         OkHttpClient.Builder()
+            .addInterceptor(headerInterceptor)
             .addInterceptor(loggingInterceptor)
             .connectTimeout(TIMEOUT_LIMIT_SECONDS, TimeUnit.SECONDS)
             .writeTimeout(TIMEOUT_LIMIT_SECONDS, TimeUnit.SECONDS)
             .readTimeout(TIMEOUT_LIMIT_SECONDS, TimeUnit.SECONDS)
             .build()
+
 
     @Provides
     @Singleton
