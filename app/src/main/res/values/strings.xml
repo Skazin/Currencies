@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Currencies</string>
+
+    <!-- Home screen -->
+    <string name="home_screen_toolbar_title">Currencies</string>
+
+
+    <!-- Favourites screen -->
+    <string name="favourites_screen_toolbar_title">Избранное</string>
+    <string name="favourites_screen_empty_state_title">Список пуст</string>
+    <string name="favourites_screen_empty_state_text">На данный момент список избранных валют пуст</string>
+
 </resources>
