@@ -1,6 +1,5 @@
 package com.currencies.shared.domain.favouritecurrencies
 
-import com.currencies.model.UiRate
 import com.currencies.shared.di.IoDispatcher
 import com.currencies.shared.domain.UseCase
 import com.currencies.shared.result.Result
@@ -13,8 +12,8 @@ class CheckIfCurrencyIsFavouriteUseCase @Inject constructor(
 ) : UseCase<String, Boolean>(ioDispatcher) {
 
     override suspend fun execute(parameters: String): Boolean {
-        return when (val a = getFavouriteCurrenciesUseCase(Unit) ) {
-            is Result.Success -> a.data.contains(UiRate(currency = parameters))
+        return when (val result = getFavouriteCurrenciesUseCase(Unit) ) {
+            is Result.Success -> result.data.contains(parameters)
             else -> false
         }
     }

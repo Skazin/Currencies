@@ -9,6 +9,6 @@ import javax.inject.Inject
 class DeleteFavouriteCurrencyUseCase @Inject constructor(
     private val favouriteCurrenciesRepository: FavouriteCurrenciesRepository,
     @IoDispatcher ioDispatcher: CoroutineDispatcher
-) : SuspendUseCase<Long?, Unit>(ioDispatcher) {
-    override suspend fun execute(parameters: Long?) = favouriteCurrenciesRepository.deleteFavouriteCurrency(parameters)
+) : SuspendUseCase<String?, Unit>(ioDispatcher) {
+    override suspend fun execute(parameters: String?) = favouriteCurrenciesRepository.deleteFavouriteCurrency(parameters)
 }

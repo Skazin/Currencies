@@ -1,6 +1,5 @@
 package com.currencies.shared.domain.favouritecurrencies
 
-import com.currencies.model.UiRate
 import com.currencies.shared.data.repository.FavouriteCurrenciesRepository
 import com.currencies.shared.di.IoDispatcher
 import com.currencies.shared.domain.UseCase
@@ -10,7 +9,7 @@ import javax.inject.Inject
 class GetFavouriteCurrenciesUseCase @Inject constructor(
     private val favouriteCurrenciesRepository: FavouriteCurrenciesRepository,
     @IoDispatcher ioDispatcher: CoroutineDispatcher,
-) : UseCase<Unit, List<UiRate>>(ioDispatcher) {
+) : UseCase<Unit, List<String>>(ioDispatcher) {
 
     override suspend fun execute(parameters: Unit) = favouriteCurrenciesRepository.getFavouriteCurrencies()
 }

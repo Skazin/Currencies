@@ -25,13 +25,13 @@ data class UiRate(
      */
     var isFavourite: Boolean = false
 ) {
-    override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (other is UiRate) return this.currency == other.currency
-        return true
-    }
-
-    override fun hashCode(): Int {
-        return super.hashCode()
-    }
+//    override fun equals(other: Any?): Boolean {
+//        if (this === other) return true
+//        if (other is UiRate) return this.currency == other.currency
+//        return true
+//    }
+//
+//    override fun hashCode(): Int {
+//        return super.hashCode()
+//    }
 }

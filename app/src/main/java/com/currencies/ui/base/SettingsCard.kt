@@ -29,7 +29,8 @@ import com.currencies.ui.util.extensions.noRippleClickable
 @SuppressLint("UnusedTransitionTargetStateParameter")
 @Composable
 fun SettingsCard(
-    onCurrencySelect: (String) -> Unit
+    onCurrencySelect: (String) -> Unit,
+    onSortClick: () -> Unit
 ) {
     val text = remember { mutableStateOf("BYN") } // initial value
 
@@ -97,7 +98,10 @@ fun SettingsCard(
             Icon(
                 painter = painterResource(id = R.drawable.ic_filter),
                 tint = mainGray,
-                contentDescription = "filter icon"
+                contentDescription = "filter icon",
+                modifier = Modifier.noRippleClickable {
+                    onSortClick()
+                }
             )
         }
 

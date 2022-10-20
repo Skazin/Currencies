@@ -11,14 +11,12 @@ import androidx.compose.material.Scaffold
 import androidx.compose.material.ScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import androidx.paging.LoadState
-import androidx.paging.compose.collectAsLazyPagingItems
-import androidx.paging.compose.items
 import com.currencies.ui.base.*
 import com.currencies.ui.theme.mainGray
 import com.google.accompanist.systemuicontroller.SystemUiController
@@ -39,8 +37,14 @@ fun HomeView(
     scaffoldState: ScaffoldState,
     systemUiController: SystemUiController,
     darkSystemIcons: Boolean,
+    needToRefresh: Boolean,
+    onSortClick: () -> Unit
 ) {
-    val ratesList = viewModel.ratesList.collectAsLazyPagingItems()
+    val rateList = viewModel.rateList.collectAsState()
+    val loadingState = viewModel.loadingState.collectAsState()
+
+    if(needToRefresh) viewModel.getUiRateList(false)
+
 
     SideEffect {
         systemUiController.setStatusBarColor(
@@ -71,8 +75,9 @@ fun HomeView(
             SettingsCard(
                 onCurrencySelect = {
                     viewModel.changeCurrency(it)
-                    ratesList.refresh()
-                }
+                    viewModel.getUiRateList(false)
+                },
+                onSortClick = onSortClick
             )
 
             LazyColumn(
@@ -87,19 +92,17 @@ fun HomeView(
                     .fillMaxHeight()
                     .padding(bottom = 42.dp)
             ) {
-                if (ratesList.loadState.refresh is LoadState.Loading) item { CircularProgressIndicator(color = mainGray) }
+                if (loadingState.value) item { CircularProgressIndicator(color = mainGray) }
 
-                if (ratesList.loadState.refresh is LoadState.NotLoading) items(
-                    items = ratesList
-                ) { item ->
-                    item?.let { uiRate ->
+                if (!loadingState.value) rateList.value.forEach { uiRate ->
+                    item {
                         CurrencyCard(
                             currencyName = uiRate.currency,
                             currencyRate = uiRate.rate,
                             isFavourite = uiRate.isFavourite,
                             onFavouriteClick = { isFavourite ->
                                 uiRate.isFavourite = isFavourite
-                                viewModel.onFavouriteStarClick(uiRate, isFavourite, uiRate.id)
+                                viewModel.onFavouriteStarClick(uiRate, isFavourite, uiRate.currency)
                             }
                         )
                     }

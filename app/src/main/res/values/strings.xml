@@ -10,4 +10,12 @@
     <string name="favourites_screen_empty_state_title">Список пуст</string>
     <string name="favourites_screen_empty_state_text">На данный момент список избранных валют пуст</string>
 
+
+    <!-- Sort screen -->
+    <string name="sort_screen_toolbar_title">Сортировка</string>
+    <string name="sort_screen_alphabet_settings_title">По алфавиту:</string>
+    <string name="sort_screen_rates_settings_title">По значению:</string>
+    <string name="sort_screen_settings_asc">по возрастанию</string>
+    <string name="sort_screen_settings_desc">по убыванию</string>
+
 </resources>

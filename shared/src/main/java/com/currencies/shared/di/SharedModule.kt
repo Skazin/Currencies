@@ -23,7 +23,7 @@ class SharedModule {
 
     @Provides
     @Singleton
-    fun provideMoshi() = Moshi.Builder()
+    fun provideMoshi(): Moshi = Moshi.Builder()
         .add(KotlinJsonAdapterFactory())
         .build()
 }

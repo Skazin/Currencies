@@ -10,8 +10,10 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.paging.ExperimentalPagingApi
 import com.currencies.ui.favourites.FavouritesView
 import com.currencies.ui.home.HomeView
+import com.currencies.ui.sort.SortView
 import com.currencies.ui.splash.SplashView
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -20,9 +22,15 @@ import kotlinx.coroutines.InternalCoroutinesApi
 enum class Destinations(val destinationName: String) {
     SPLASH("splash"),
     HOME("home"),
-    FAVOURITES("favourites")
+    FAVOURITES("favourites"),
+    SORT("sort")
 }
 
+enum class NavArguments(val argName: String) {
+    NEED_TO_REFRESH("needToRefresh")
+}
+
+@ExperimentalPagingApi
 @ExperimentalCoroutinesApi
 @ExperimentalFoundationApi
 @ExperimentalAnimationApi
@@ -50,24 +58,44 @@ fun NavGraph(
         }
         composable(
             route = Destinations.HOME.destinationName
-
         ) {
+            val needToRefresh = it.arguments?.getBoolean(NavArguments.NEED_TO_REFRESH.argName)
             HomeView(
                 viewModel = hiltViewModel(),
                 navController = navController,
                 scaffoldState = scaffoldState,
                 systemUiController = systemUiController,
-                darkSystemIcons = useDarkIcons
+                darkSystemIcons = useDarkIcons,
+                needToRefresh = needToRefresh!!,
+                onSortClick = { navController.navigate(Destinations.SORT.destinationName) }
             )
         }
         composable(
             route = Destinations.FAVOURITES.destinationName
-
         ) {
+            val needToRefresh = it.arguments?.getBoolean(NavArguments.NEED_TO_REFRESH.argName)
             FavouritesView(
                 viewModel = hiltViewModel(),
                 navController = navController,
-                scaffoldState = scaffoldState
+                scaffoldState = scaffoldState,
+                needToRefresh = needToRefresh!!,
+                onSortClick = { navController.navigate(Destinations.SORT.destinationName) }
+            )
+        }
+        composable(
+            route = Destinations.SORT.destinationName
+
+        ) {
+            SortView(
+                viewModel = hiltViewModel(),
+                navController = navController,
+                scaffoldState = scaffoldState,
+                onNavigationClick = { navController
+                    .previousBackStackEntry?.arguments?.putBoolean(
+                        NavArguments.NEED_TO_REFRESH.argName,
+                        true
+                    )
+                    navController.popBackStack() }
             )
         }
     }

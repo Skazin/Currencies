@@ -12,7 +12,6 @@ class HeaderInterceptor() : Interceptor {
 
         requestBuilder
             .addHeader("apiKey", BuildConfig.API_KEY)
-            .addHeader("date", "2022-10-16")
 
         val request = requestBuilder.build()
         return chain.proceed(request)

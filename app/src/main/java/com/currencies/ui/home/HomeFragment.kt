@@ -10,6 +10,7 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
+import androidx.paging.ExperimentalPagingApi
 import com.currencies.ui.base.NavGraph
 import com.currencies.ui.theme.CurrenciesTheme
 import com.google.accompanist.insets.ProvideWindowInsets
@@ -25,7 +26,8 @@ class HomeFragment : Fragment() {
         ExperimentalFoundationApi::class,
         InternalCoroutinesApi::class,
         ExperimentalMaterialApi::class,
-        ExperimentalAnimationApi::class
+        ExperimentalAnimationApi::class,
+        ExperimentalPagingApi::class
     )
     @SuppressLint("VisibleForTests")
     override fun onCreateView(
