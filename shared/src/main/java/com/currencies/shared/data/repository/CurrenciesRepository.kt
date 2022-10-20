@@ -9,14 +9,14 @@ import com.currencies.shared.data.datasource.remote.CurrenciesApi
 interface CurrenciesRepository {
 
     /**
-     * Get latest currencies rates
+     * Get latest currencies rates.
      *
      * @return map of currencies rates
      */
     suspend fun getLatestRates(chosenCurrency: String): Map<String, Double>
 
     /**
-     * Get favourite currencies rates
+     * Get favourite currencies rates.
      *
      * @return map of currencies rates
      */

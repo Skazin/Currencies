@@ -13,6 +13,16 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
+
+/**
+ * Base view model for incapsulating common view model's features.
+ *
+ * @param getUiRateListUseCase for getting list of [UiRate] objects
+ * @param saveFavouriteCurrencyUseCase for save favourite currency
+ * @param deleteFavouriteCurrencyUseCase for delete favourite currency
+ * @param sortSettingsManager for using sort
+ *
+ */
 abstract class BaseViewModel(
     private val getUiRateListUseCase: GetUiRateListUseCase? = null,
     private val sortSettingsManager: SortSettingsManager,
@@ -28,6 +38,10 @@ abstract class BaseViewModel(
 
     private val _currency = MutableStateFlow("BYN")
 
+    /**
+     * Getting list of [UiRate] objects
+     * @param isFavourite - flag if favourite currencies are requested or not
+     */
     fun getUiRateList(isFavourite: Boolean) {
         viewModelScope.launch {
             _loadingState.value = true
@@ -53,10 +67,20 @@ abstract class BaseViewModel(
         }
     }
 
+    /**
+     * Changing currency for convert rate
+     * @param chosenCurrency currency that was chosen for convert
+     */
     fun changeCurrency(chosenCurrency: String) {
         _currency.value = chosenCurrency
     }
 
+    /**
+     * Handling favourite click
+     * @param uiRate rate that was clicked
+     * @param isFavourite flag is current rate favourite
+     * @param currencyName name of currency rate
+     */
     fun onFavouriteStarClick(
         uiRate: UiRate? = null,
         isFavourite: Boolean,

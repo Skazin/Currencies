@@ -8,12 +8,30 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
+/**
+ * A single source point to work with favourite currencies.
+ */
 interface FavouriteCurrenciesRepository {
 
+    /**
+     * Save favourite currency.
+     *
+     * @param favouriteCurrency favourite currency rate
+     */
     suspend fun saveFavouriteCurrency(favouriteCurrency: UiRate)
 
+    /**
+     * Get list of names of favourite currencies.
+     *
+     * @return list of names of favourite currencies
+     */
     suspend fun getFavouriteCurrencies(): List<String>
 
+    /**
+     * Delete favourite currency by its name.
+     *
+     * @param currencyName name of favourite currency
+     */
     suspend fun deleteFavouriteCurrency(currencyName: String?)
 }
 

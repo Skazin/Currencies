@@ -7,7 +7,10 @@ import com.currencies.shared.domain.SuspendUseCase
 import kotlinx.coroutines.CoroutineDispatcher
 import javax.inject.Inject
 
-class SaveFavouriteCurrencyUseCase @Inject constructor(
+/**
+ * Save favourite currency in the data base.
+ */
+open class SaveFavouriteCurrencyUseCase @Inject constructor(
     private val favouriteCurrenciesRepository: FavouriteCurrenciesRepository,
     @IoDispatcher ioDispatcher: CoroutineDispatcher
 ) : SuspendUseCase<UiRate, Unit>(ioDispatcher) {

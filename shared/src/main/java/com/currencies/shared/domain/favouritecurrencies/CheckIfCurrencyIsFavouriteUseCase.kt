@@ -6,7 +6,10 @@ import com.currencies.shared.result.Result
 import kotlinx.coroutines.CoroutineDispatcher
 import javax.inject.Inject
 
-class CheckIfCurrencyIsFavouriteUseCase @Inject constructor(
+/**
+ * Checking if currency is favourite from the data base.
+ */
+open class CheckIfCurrencyIsFavouriteUseCase @Inject constructor(
     private val getFavouriteCurrenciesUseCase: GetFavouriteCurrenciesUseCase,
     @IoDispatcher ioDispatcher: CoroutineDispatcher,
 ) : UseCase<String, Boolean>(ioDispatcher) {

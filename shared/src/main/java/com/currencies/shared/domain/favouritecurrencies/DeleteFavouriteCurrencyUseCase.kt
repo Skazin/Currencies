@@ -6,7 +6,10 @@ import com.currencies.shared.domain.SuspendUseCase
 import kotlinx.coroutines.CoroutineDispatcher
 import javax.inject.Inject
 
-class DeleteFavouriteCurrencyUseCase @Inject constructor(
+/**
+ * Get favourite currency from the data base.
+ */
+open class DeleteFavouriteCurrencyUseCase @Inject constructor(
     private val favouriteCurrenciesRepository: FavouriteCurrenciesRepository,
     @IoDispatcher ioDispatcher: CoroutineDispatcher
 ) : SuspendUseCase<String?, Unit>(ioDispatcher) {

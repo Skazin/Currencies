@@ -6,7 +6,10 @@ import com.currencies.shared.domain.UseCase
 import kotlinx.coroutines.CoroutineDispatcher
 import javax.inject.Inject
 
-class GetLatestFavouriteCurrenciesRatesUseCase @Inject constructor(
+/**
+ * Getting list of latest rates of favourite currencies from repository.
+ */
+open class GetLatestFavouriteCurrenciesRatesUseCase @Inject constructor(
     private val currenciesRepository: CurrenciesRepository,
     @IoDispatcher ioDispatcher: CoroutineDispatcher,
 ) : UseCase<GetLatestFavouriteCurrenciesRatesUseCase.Params, Map<String, Double>>(ioDispatcher) {

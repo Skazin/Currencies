@@ -6,7 +6,11 @@ import com.currencies.shared.domain.UseCase
 import kotlinx.coroutines.CoroutineDispatcher
 import javax.inject.Inject
 
-class GetFavouriteCurrenciesUseCase @Inject constructor(
+
+/**
+ * Get list of names of favourite currencies from the data base.
+ */
+open class GetFavouriteCurrenciesUseCase @Inject constructor(
     private val favouriteCurrenciesRepository: FavouriteCurrenciesRepository,
     @IoDispatcher ioDispatcher: CoroutineDispatcher,
 ) : UseCase<Unit, List<String>>(ioDispatcher) {

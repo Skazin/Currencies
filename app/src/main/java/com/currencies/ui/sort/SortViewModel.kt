@@ -8,6 +8,12 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import javax.inject.Inject
 
+/**
+ * View model for managing sort view.
+ *
+ * @param sortSettingsManager for using sort
+ *
+ */
 @HiltViewModel
 class SortViewModel @Inject constructor(
     private val sortSettingsManager: SortSettingsManager
@@ -58,6 +64,9 @@ class SortViewModel @Inject constructor(
         checkState()
     }
 
+    /**
+     * Handling changing in sort settings
+     */
     fun checkState(
         alphabetAscChecked: Boolean = _alphabetAscChecked.value,
         rateAscChecked: Boolean = _rateAscChecked.value

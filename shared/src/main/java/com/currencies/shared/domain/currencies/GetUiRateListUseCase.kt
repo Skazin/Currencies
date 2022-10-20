@@ -10,7 +10,10 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.async
 import javax.inject.Inject
 
-class GetUiRateListUseCase @Inject constructor(
+/**
+ * Getting list of [UiRate] objects.
+ */
+open class GetUiRateListUseCase @Inject constructor(
     private val getLatestCurrenciesRatesUseCase: GetLatestCurrenciesRatesUseCase,
     private val getLatestFavouriteCurrenciesRatesUseCase: GetLatestFavouriteCurrenciesRatesUseCase,
     private val getFavouriteCurrenciesUseCase: GetFavouriteCurrenciesUseCase,
@@ -26,7 +29,11 @@ class GetUiRateListUseCase @Inject constructor(
         if (parameters.isFavourite) {
             when (val favouriteCurrenciesNamesResult = getFavouriteCurrenciesUseCase(Unit)) {
                 is Result.Success -> favouritesList.addAll(favouriteCurrenciesNamesResult.data)
-                is Result.Error -> return Result.Error(RuntimeException(favouriteCurrenciesNamesResult.exception))
+                is Result.Error -> return Result.Error(
+                    RuntimeException(
+                        favouriteCurrenciesNamesResult.exception
+                    )
+                )
             }
             when (val latestFavouriteCurrenciesResult = getLatestFavouriteCurrenciesRatesUseCase(
                 GetLatestFavouriteCurrenciesRatesUseCase.Params(
@@ -37,20 +44,25 @@ class GetUiRateListUseCase @Inject constructor(
             ) {
                 is Result.Success -> {
                     latestFavouriteCurrenciesResult.data.map { networkRate ->
-                            rateList.add(
-                                UiRate(
-                                    currency = networkRate.key,
-                                    rate = networkRate.value,
-                                    isFavourite = true
-                                )
+                        rateList.add(
+                            UiRate(
+                                currency = networkRate.key,
+                                rate = networkRate.value,
+                                isFavourite = true
                             )
+                        )
                     }
                     return Result.Success(rateList)
                 }
-                is Result.Error -> return Result.Error(RuntimeException(latestFavouriteCurrenciesResult.exception))
+                is Result.Error -> return Result.Error(
+                    RuntimeException(
+                        latestFavouriteCurrenciesResult.exception
+                    )
+                )
             }
         } else {
-            when (val latestCurrenciesResult = getLatestCurrenciesRatesUseCase(parameters.currency)) {
+            when (val latestCurrenciesResult =
+                getLatestCurrenciesRatesUseCase(parameters.currency)) {
                 is Result.Success -> {
                     latestCurrenciesResult.data.map { networkRate ->
                         scope.async {
