@@ -9,6 +9,7 @@ import com.currencies.shared.domain.favouritecurrencies.SaveFavouriteCurrencyUse
 import com.currencies.shared.result.Result
 import com.currencies.shared.support.navigationmanager.SortSettingsManager
 import com.currencies.shared.support.navigationmanager.SortType
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
@@ -51,6 +52,7 @@ abstract class BaseViewModel(
                 )) {
                     is Result.Success -> {
                         val ratesList = result.data.toMutableList()
+                        delay(2000) // avoiding comparing on null object
                         when (sortSettingsManager.sortSettings) {
                             SortType.ALPH_ASC_RATE_ASC -> ratesList.sortWith(compareBy<UiRate> { rate -> rate.currency }.thenBy { rate -> rate.rate })
                             SortType.ALPH_ASC_RATE_DESC -> ratesList.sortWith(compareBy<UiRate> { rate -> rate.currency }.thenByDescending { rate -> rate.rate })

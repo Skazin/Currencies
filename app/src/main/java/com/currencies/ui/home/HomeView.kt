@@ -14,11 +14,11 @@ import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.currencies.ui.base.*
 import com.currencies.ui.theme.mainGray
+import com.currencies.ui.theme.white
 import com.google.accompanist.systemuicontroller.SystemUiController
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.InternalCoroutinesApi
@@ -48,11 +48,11 @@ fun HomeView(
 
     SideEffect {
         systemUiController.setStatusBarColor(
-            color = Color.Transparent,
+            color = white,
             darkIcons = darkSystemIcons
         )
         systemUiController.setNavigationBarColor(
-            color = Color.Transparent,
+            color = white,
             darkIcons = darkSystemIcons
         )
     }
